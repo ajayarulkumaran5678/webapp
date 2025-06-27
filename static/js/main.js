@@ -152,6 +152,19 @@ class WeatherDashboard {
         this.errorMessage.style.display = 'none';
     }
 }
+document.getElementById('downloadBtn').addEventListener('click', () => {
+    const city = document.getElementById('cityName').textContent;
+    const temp = document.getElementById('temperature').textContent;
+    const desc = document.getElementById('description').textContent;
+    const humidity = document.getElementById('humidity').textContent;
 
+    const content = `Weather Report\nCity: ${city}\nTemperature: ${temp}°C\nDescription: ${desc}\nHumidity: ${humidity}`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.href = url;
+});
 // Initialize the weather dashboard when the page loads
 const weatherApp = new WeatherDashboard();

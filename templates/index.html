@@ -8,6 +8,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo"><i class="fas fa-cloud"></i> MyWeatherApp</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a id="downloadBtn" class="nav-link" download="weather_report.txt" href="#">Download</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-cloud-sun"></i> Weather Dashboard</h1>
@@ -73,9 +85,7 @@
 
             <div class="forecast-section">
                 <h3>5-Day Forecast</h3>
-                <div class="forecast-container" id="forecastContainer">
-                    <!-- Forecast cards will be populated here -->
-                </div>
+                <div class="forecast-container" id="forecastContainer"></div>
             </div>
 
             <div class="sun-times">
@@ -102,6 +112,28 @@
         </div>
     </div>
 
+    <footer id="contact" style="text-align:center; margin-top: 40px; padding: 20px; color: white;">
+        <h3>Contact Us</h3>
+        <p>Email: support@weatherapp.com</p>
+        <p>GitHub: <a href="https://github.com/yourusername" target="_blank" style="color: white; text-decoration: underline;">github.com/yourusername</a></p>
+    </footer>
+
+    <script>
+        // Append to enable download of simple text summary
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const city = document.getElementById('cityName').textContent;
+            const temp = document.getElementById('temperature').textContent;
+            const desc = document.getElementById('description').textContent;
+            const humidity = document.getElementById('humidity').textContent;
+
+            const content = `Weather Report\nCity: ${city}\nTemperature: ${temp}°C\nDescription: ${desc}\nHumidity: ${humidity}`;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.href = url;
+        });
+    </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

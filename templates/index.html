@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-cloud-sun"></i> Weather Dashboard</h1>
+            <div class="search-container">
+                <input type="text" id="cityInput" placeholder="Enter city name..." autocomplete="off">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <div id="suggestions" class="suggestions"></div>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+
+        <div id="weatherContent" class="weather-content">
+            <div class="main-weather">
+                <div class="current-weather">
+                    <div class="weather-icon">
+                        <img id="weatherIcon" src="" alt="Weather Icon">
+                    </div>
+                    <div class="weather-info">
+                        <h2 id="cityName">Select a city</h2>
+                        <div class="temperature">
+                            <span id="temperature">--</span>°C
+                        </div>
+                        <p id="description">Weather description</p>
+                        <p class="feels-like">Feels like <span id="feelsLike">--</span>°C</p>
+                    </div>
+                </div>
+
+                <div class="weather-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-tint"></i>
+                        <div>
+                            <span class="stat-value" id="humidity">--%</span>
+                            <span class="stat-label">Humidity</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-wind"></i>
+                        <div>
+                            <span class="stat-value" id="windSpeed">-- m/s</span>
+                            <span class="stat-label">Wind Speed</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-thermometer-half"></i>
+                        <div>
+                            <span class="stat-value" id="pressure">-- hPa</span>
+                            <span class="stat-label">Pressure</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-eye"></i>
+                        <div>
+                            <span class="stat-value" id="visibility">-- km</span>
+                            <span class="stat-label">Visibility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-section">
+                <h3>5-Day Forecast</h3>
+                <div class="forecast-container" id="forecastContainer">
+                    <!-- Forecast cards will be populated here -->
+                </div>
+            </div>
+
+            <div class="sun-times">
+                <div class="sun-time">
+                    <i class="fas fa-sun sunrise"></i>
+                    <div>
+                        <span class="time" id="sunrise">--:--</span>
+                        <span class="label">Sunrise</span>
+                    </div>
+                </div>
+                <div class="sun-time">
+                    <i class="fas fa-moon sunset"></i>
+                    <div>
+                        <span class="time" id="sunset">--:--</span>
+                        <span class="label">Sunset</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="errorMessage" class="error-message">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>City not found. Please try again.</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
